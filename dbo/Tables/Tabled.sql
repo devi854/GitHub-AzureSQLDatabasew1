@@ -3,8 +3,10 @@ CREATE TABLE [dbo].[Tabled] (
     [col2] VARCHAR (10) NULL
 )
 
+
+
 GO
 
 
 
-GO 
+GO
