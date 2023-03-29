@@ -1,0 +1,27 @@
+name: Azure SQL DB Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Azure Login
+        uses: azure/login@v1
+        with:
+        creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
+        enable-AzPSSession: true
+          
+      - name: Deploy Azure SQL Database
+        uses: Azure/sql-action@v1.0.0-preview1
+        with:
+          server-name: mysqlmn
+          admin-login: azureuser
+          admin-password: Devi@329
+          database-name: mysql
+          sql-file: './AzureSQLDB.sqlproj'
