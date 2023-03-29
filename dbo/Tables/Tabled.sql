@@ -1,9 +1,10 @@
-use test;
+CREATE TABLE [dbo].[Tabled] (
+    [col1] INT          NOT NULL,
+    [col2] VARCHAR (10) NULL
+)
 
-CREATE TABLE employee
-(
-id int primary key,
-name varchar(30),
-dob datetime,
-email varchar(40)
-);
+GO
+
+
+
+GO 
