@@ -56,7 +56,7 @@ jobs:
       # Required to add a temporary firewall rule for the runner
       - uses: azure/login@v1.4.6
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
           
       # Installs dacpac
       # For this to work you have a secret specified, default in my repo is blank
