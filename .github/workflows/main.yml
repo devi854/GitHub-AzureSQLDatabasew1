@@ -19,13 +19,11 @@ jobs:
       with:
         creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
           
-    - name: Deploy Azure SQL DB
-      uses: azure/sql-action@v1
+    - name: Azure SQL Deploy
+      uses: Azure/sql-action@v2
       with:
-        server-name: sert.database.windows.net
-        admin-login: azureuser
-        admin-password: Devi@329
-        database-name: mysql
-        sql-file: ./AzureSQLDB.sqlproj
-        connection-string: '${{ secrets.SQL_CONNECTION_STRING }}'
+         connection-string: '${{ secrets.SQL_CONNECTION_STRING}}'
+         path: './AzureSQLDB.dacpac'
+         action: 'publish'
+           
 
