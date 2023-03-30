@@ -3,7 +3,7 @@ name: Azure SQL DB Deploy
 on:
   push:
     branches:
-      - main
+      - new
 
 
 
