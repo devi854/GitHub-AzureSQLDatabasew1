@@ -6,40 +6,28 @@ on:
       - main
 
 
-env:
-  SERVER: sert
-  DATABASE: mysql
-  USERNAME: azureuser
-  PASSWORD: Devi@329
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout the repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3
+    - name: Setup Azure CLI
+      uses: azure/login@v1
       with:
-        dotnet-version: '6.0.x'
-
-    - name: Restore dependencies
-      run: dotnet restore
-
-    - name: Build
-      run: dotnet build --configuration Release
-
-    - name: Publish
-      run: dotnet publish --configuration Release --output ${{ github.workspace }}/publish
-
-    - name: Deploy to Azure SQL
+        creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
+          
+    - name: Deploy Azure SQL DB
       uses: azure/sql-action@v1
       with:
-        server-name: ${{ env.SERVER }}
-        database-name: ${{ env.DATABASE }}
-        admin-login: ${{ env.USERNAME }}
-        admin-password: ${{ env.PASSWORD }}
-        azure-resource-group: docker-rg
-        dacpac-package: ${{ github.workspace }}/publish/Create dacpac from ADS test.dacpac
+        server-name: sert.database.windows.net
+        admin-login: azureuser
+        admin-password: Devi@329
+        database-name: mysql
+        sql-file: <path-to-your-sql-file>
+
+    - name: Show connection string
+      run: echo "Connection String:$"{{ secrets.SQL_CONNECTION_STRING }}"
+
