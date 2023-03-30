@@ -26,6 +26,6 @@ jobs:
         admin-login: azureuser
         admin-password: Devi@329
         database-name: mysql
-        sql-file: AzureSQLDB.sqlproj
+        sql-file: ./AzureSQLDB.sqlproj
         connection-string: '${{ secrets.SQL_CONNECTION_STRING }}'
 
