@@ -26,7 +26,7 @@ jobs:
         admin-login: azureuser
         admin-password: Devi@329
         database-name: mysql
-        sql-file: <path-to-your-sql-file>
+        sql-file: AzureSQLDB.sqlproj
 
     - name: Show connection string
       run: echo "Connection String:$"{{ secrets.SQL_CONNECTION_STRING }}"
